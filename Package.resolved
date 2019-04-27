@@ -1,0 +1,16 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "Networker",
+        "repositoryURL": "https://github.com/diejmon/Networker.git",
+        "state": {
+          "branch": "master",
+          "revision": "a66f652606e8b6ac53f87ff720285727e9a32df4",
+          "version": null
+        }
+      }
+    ]
+  },
+  "version": 1
+}
