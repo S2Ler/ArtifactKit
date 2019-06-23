@@ -1,9 +1,9 @@
 import Foundation
 
-public struct CardSet: Decodable {
+public struct ArtifactCardSet: Decodable {
   public let version: Int
   public let info: Info
-  public let cardList: [Card]
+  public let cardList: [ArtifactCard]
 
   private enum CodingKeys: String, CodingKey {
     case version
@@ -12,11 +12,11 @@ public struct CardSet: Decodable {
   }
 }
 
-public extension CardSet {
+public extension ArtifactCardSet {
   struct Info: Decodable {
-    public let id: Identifier<CardSet>
+    public let id: Identifier<ArtifactCardSet>
     public let packItemDef: Int
-    public let name: LocalizedText
+    public let name: ArtifactLocalizedText
 
     private enum CodingKeys: String, CodingKey {
       case id = "set_id"
@@ -26,8 +26,8 @@ public extension CardSet {
   }
 }
 
-extension CardSet: Identifiable {
-  public var id: Identifier<CardSet> {
+extension ArtifactCardSet: Identifiable {
+  public var id: Identifier<ArtifactCardSet> {
     return info.id
   }
 }

@@ -1,6 +1,6 @@
 import Foundation
 
-public enum CardType: String, Decodable {
+public enum ArtifactCardType: String, Decodable {
   case ability = "Ability"
   case creep = "Creep"
   case hero = "Hero"

@@ -15,18 +15,18 @@ public class ArtifactApi {
     self.init(dispatcher: createDispatcher())
   }
 
-  public func fetchCardSetCdnInfo(_ setId: CardSetId) -> AnyPublisher<CardSetCdnInfo, Error> {
+  public func fetchCardSetCdnInfo(_ setId: ArtifactCardSetId) -> AnyPublisher<ArtifactCardSetCdnInfo, Error> {
     let path = RequestPath(pattern: "/cardset/{id}",
                            parameters: ["id": setId])
 
-    let request: ArtifactRequest<CardSetCdnInfo> = ArtifactApi.request(path: path,
+    let request: ArtifactRequest<ArtifactCardSetCdnInfo> = ArtifactApi.request(path: path,
                                                                        httpMethod: HttpMethod.get)
     return dispatcher.dispatch(request)
   }
 
-  public func fetchCards(from setInfo: CardSetCdnInfo) -> AnyPublisher<CardSet, Error>{
+  public func fetchCards(from setInfo: ArtifactCardSetCdnInfo) -> AnyPublisher<ArtifactCardSet, Error>{
     return Publishers.Just(setInfo)
-      .tryMap { setInfo -> ArtifactRequest<CardSetResponse> in
+      .tryMap { setInfo -> ArtifactRequest<ArtifactCardSetResponse> in
         ArtifactApi.request(baseUrl: setInfo.cdnRoot,
                             path: try RequestPath(dynamicPattern: setInfo.relativePath),
                             httpMethod: .get)

@@ -12,7 +12,7 @@ class ArtifactApiTests: XCTestCase {
   }
 
   func testCardSetCdnInfo() {
-    let allSetIds = CardSetId.allCases
+    let allSetIds = ArtifactCardSetId.allCases
     let allSetsObtained = expectation(description: "All sets obtained")
     allSetsObtained.expectedFulfillmentCount = allSetIds.count
 

@@ -1,6 +1,6 @@
 import Foundation
 
-public struct LocalizedImage: Decodable {
+public struct ArtifactLocalizedImage: Decodable {
   public let `default`: URL?
   public let german: URL?
   public let french: URL?

@@ -1,6 +1,6 @@
 import Foundation
 
-public struct CardSetCdnInfo: Decodable {
+public struct ArtifactCardSetCdnInfo: Decodable {
   public enum Error: Swift.Error {
     case cannotResolveSetUrl
   }
@@ -15,7 +15,7 @@ public struct CardSetCdnInfo: Decodable {
   }
 }
 
-extension CardSetCdnInfo {
+extension ArtifactCardSetCdnInfo {
   public func url() throws -> URL {
     if let url = URL(string: relativePath, relativeTo: cdnRoot) {
       return url

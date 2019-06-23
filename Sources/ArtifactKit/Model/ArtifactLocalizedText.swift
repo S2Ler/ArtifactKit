@@ -1,6 +1,6 @@
 import Foundation
 
-public struct LocalizedText: Decodable {
+public struct ArtifactLocalizedText: Decodable {
   public let english: String?
   public let german: String?
   public let french: String?

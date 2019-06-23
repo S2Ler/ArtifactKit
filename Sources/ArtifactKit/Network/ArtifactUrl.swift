@@ -1,7 +1,7 @@
 import Foundation
 
 internal enum ArtifactUrl {
-  case cardSet(CardSetId)
+  case cardSet(ArtifactCardSetId)
 }
 
 extension ArtifactUrl {
