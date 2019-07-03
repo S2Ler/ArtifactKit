@@ -25,7 +25,7 @@ public class ArtifactApi {
   }
 
   public func fetchCards(from setInfo: ArtifactCardSetCdnInfo) -> AnyPublisher<ArtifactCardSet, Error>{
-    return Publishers.Just(setInfo)
+    return Just(setInfo)
       .tryMap { setInfo -> ArtifactRequest<ArtifactCardSetResponse> in
         ArtifactApi.request(baseUrl: setInfo.cdnRoot,
                             path: try RequestPath(dynamicPattern: setInfo.relativePath),

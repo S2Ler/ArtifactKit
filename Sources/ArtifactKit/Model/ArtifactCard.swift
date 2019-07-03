@@ -9,6 +9,7 @@ public struct ArtifactCard: Decodable {
   public let text: ArtifactLocalizedText
   public let miniImage: ArtifactLocalizedImage
   public let largeImage: ArtifactLocalizedImage
+  public let colors: [ArtifactColor]
 
   private enum CodingKeys: String, CodingKey {
     case id = "card_id"
@@ -18,6 +19,48 @@ public struct ArtifactCard: Decodable {
     case text = "card_text"
     case miniImage = "mini_image"
     case largeImage = "large_image"
+    case isBlue = "is_blue"
+    case isRed = "is_red"
+    case isGreen = "is_green"
+    case isBlack = "is_black"
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    id = try container.decode(Identifier<ArtifactCard>.self, forKey: .id)
+    baseId = try container.decode(Identifier<ArtifactCard>.self, forKey: .baseId)
+    type = try container.decode(ArtifactCardType.self, forKey: .type)
+    name = try container.decode(ArtifactLocalizedText.self, forKey: .name)
+    text = try container.decode(ArtifactLocalizedText.self, forKey: .text)
+    miniImage = try container.decode(ArtifactLocalizedImage.self, forKey: .miniImage)
+    largeImage = try container.decode(ArtifactLocalizedImage.self, forKey: .largeImage)
+
+    func decodeColors() throws -> [ArtifactColor] {
+      func isColor(forKey key: CodingKeys) throws -> Bool {
+        guard container.contains(key) else {
+          return false
+        }
+        return try container.decode(Bool.self, forKey: key)
+      }
+
+      var colors: [ArtifactColor] = []
+
+      if try isColor(forKey: .isBlue) {
+        colors.append(.blue)
+      }
+      if try isColor(forKey: .isRed) {
+        colors.append(.red)
+      }
+      if try isColor(forKey: .isGreen) {
+        colors.append(.green)
+      }
+      if try isColor(forKey: .isBlack) {
+        colors.append(.black)
+      }
+      return colors
+    }
+
+    colors = try decodeColors()
   }
 }
 
