@@ -1,6 +1,6 @@
 import Foundation
 
-public enum ArtifactColor {
+public enum ArtifactColor: CaseIterable {
   case blue
   case red
   case green
