@@ -5,4 +5,5 @@ public enum ArtifactColor {
   case red
   case green
   case black
+  case neutral
 }

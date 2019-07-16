@@ -9,7 +9,7 @@ public struct ArtifactCard: Decodable {
   public let text: ArtifactLocalizedText
   public let miniImage: ArtifactLocalizedImage
   public let largeImage: ArtifactLocalizedImage
-  public let colors: [ArtifactColor]
+  public let colors: Set<ArtifactColor>
 
   private enum CodingKeys: String, CodingKey {
     case id = "card_id"
@@ -35,7 +35,7 @@ public struct ArtifactCard: Decodable {
     miniImage = try container.decode(ArtifactLocalizedImage.self, forKey: .miniImage)
     largeImage = try container.decode(ArtifactLocalizedImage.self, forKey: .largeImage)
 
-    func decodeColors() throws -> [ArtifactColor] {
+    func decodeColors() throws -> Set<ArtifactColor> {
       func isColor(forKey key: CodingKeys) throws -> Bool {
         guard container.contains(key) else {
           return false
@@ -43,19 +43,19 @@ public struct ArtifactCard: Decodable {
         return try container.decode(Bool.self, forKey: key)
       }
 
-      var colors: [ArtifactColor] = []
+      var colors: Set<ArtifactColor> = []
 
       if try isColor(forKey: .isBlue) {
-        colors.append(.blue)
+        colors.insert(.blue)
       }
       if try isColor(forKey: .isRed) {
-        colors.append(.red)
+        colors.insert(.red)
       }
       if try isColor(forKey: .isGreen) {
-        colors.append(.green)
+        colors.insert(.green)
       }
       if try isColor(forKey: .isBlack) {
-        colors.append(.black)
+        colors.insert(.black)
       }
       return colors
     }
